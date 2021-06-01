@@ -27,7 +27,7 @@ I have code to automatically associate the appropriate type term to the custom p
 
 ### Vue Admin View
 
-The page the import more pieces of artwork is actually built with Vue and sends an POST request to a custom `wp-json` endpoint to trigger importing artworks.
+The admin page to import more pieces of artwork is actually built with Vue and sends an POST request to a custom `wp-json` endpoint to trigger importing artworks.
 
 ### Room for Improvement
 
