@@ -34,6 +34,7 @@ The admin page to import more pieces of artwork is actually built with Vue and s
 - [ ] Allow results pagination or for users to just keep adding X amount of artworks to save/import. If artwork ID already saved, just query for more artworks. This way we do not need to delete previous artwork.
 - [ ] Improve validation
 - [ ] Allow for importing by artwork type if can build proper search query
+- [ ] Perhaps automate imports based on a CRON job
  
 
 ## Screenshots
