@@ -16,10 +16,18 @@ This section describes how to install the plugin and get it working.
 
 ## Notes
 
+### ACF Dependency
+
+This plugin uses ACF to define the custom fields for the artwork post type.
+
 ### Artwork Types
 Upon activating this plugin, it will automatically query for the various types of artworks that the museum saves and automatically creates them as a new taxonomy `artwork_type` for the `artwork` custom post type.
 
 I have code to automatically associate the appropriate type term to the custom post type upon importing the artwork, but the API is returning `null` for the `artwork_type_id` and `artwork_type_title` keys for every artwork which was unexpected. Not sure if its a bug on their end.
+
+### Vue Admin View
+
+The page the import more pieces of artwork is actually built with Vue and sends an POST request to a custom `wp-json` endpoint to trigger importing artworks.
 
 ### Room for Improvement
 
