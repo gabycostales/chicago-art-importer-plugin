@@ -35,8 +35,7 @@ The admin page to import more pieces of artwork is actually built with Vue and s
 - [ ] Improve validation
 - [ ] Allow for importing by artwork type if can build proper search query
 - [ ] Perhaps automate imports based on a CRON job
-- [ ] Templates for the artwork posts
- 
+- [ ] Templates for the artwork posts 
 
 ## Screenshots
 

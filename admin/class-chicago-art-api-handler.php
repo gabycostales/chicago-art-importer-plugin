@@ -51,7 +51,7 @@ class ChicagoArtApiHandler {
 
     // Just pull all artwork
     if (empty($search)) {
-      $artworks = $this->get_data("{$artworksBaseUrl}?limit=10&fields={$fieldsParam}");
+      $artworks = $this->get_data("{$artworksBaseUrl}?limit=100&fields={$fieldsParam}");
       foreach ($artworks as $artwork) {
         $this->store_artwork($artwork);
       }
