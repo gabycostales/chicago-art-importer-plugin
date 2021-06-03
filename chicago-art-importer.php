@@ -20,7 +20,7 @@ if (!defined('WPINC')) die;
 
 // Used for referring to the plugin file or basename
 if (!defined( 'CHICAGO_ART_IMPORTER_FILE')) {
-	define('CHICAGO_ART_IMPORTER_FILE', plugin_basename(__FILE__));
+  define('CHICAGO_ART_IMPORTER_FILE', plugin_basename(__FILE__));
 }
 
 /**
@@ -28,8 +28,8 @@ if (!defined( 'CHICAGO_ART_IMPORTER_FILE')) {
  * This action is documented in includes/class-chicago-art-importer-activator.php
  */
 function activate_Chicago_Art_Importer() {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-chicago-art-importer-activator.php';
-	Chicago_Art_Importer_Activator::activate();
+  require_once plugin_dir_path(__FILE__) . 'includes/class-chicago-art-importer-activator.php';
+  Chicago_Art_Importer_Activator::activate();
 }
 
 /**
@@ -37,8 +37,8 @@ function activate_Chicago_Art_Importer() {
  * This action is documented in includes/class-chicago-art-importer-deactivator.php
  */
 function deactivate_Chicago_Art_Importer() {
-	require_once plugin_dir_path(__FILE__).'includes/class-chicago-art-importer-deactivator.php';
-	Chicago_Art_Importer_Deactivator::deactivate();
+  require_once plugin_dir_path(__FILE__).'includes/class-chicago-art-importer-deactivator.php';
+  Chicago_Art_Importer_Deactivator::deactivate();
 }
 
 register_activation_hook(__FILE__, 'activate_Chicago_Art_Importer');
@@ -60,9 +60,7 @@ require plugin_dir_path(__FILE__).'includes/class-chicago-art-importer.php';
  * @since 		1.0.0
  */
 function run_Chicago_Art_Importer() {
-
-	$plugin = new Chicago_Art_Importer();
-	$plugin->run();
-
+  $plugin = new Chicago_Art_Importer();
+  $plugin->run();
 }
 run_Chicago_Art_Importer();

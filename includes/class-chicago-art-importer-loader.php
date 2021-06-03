@@ -18,58 +18,58 @@ class Chicago_Art_Importer_Loader {
   protected $actions;
 
   /**
-	 * Initialize the collections used to maintain the actions.
-	 */
-	public function __construct() {
-		$this->actions = array();
-	}
+   * Initialize the collections used to maintain the actions.
+   */
+  public function __construct() {
+    $this->actions = array();
+  }
 
   /**
-	 * Add a new action to the collection to be registered with WordPress.
-	 */
-	public function add_action($hook, $component, $callback, $priority = 10, $accepted_args = 1) {
-		$this->actions = $this->add($this->actions, $hook, $component, $callback, $priority, $accepted_args);
-	}
+   * Add a new action to the collection to be registered with WordPress.
+   */
+  public function add_action($hook, $component, $callback, $priority = 10, $accepted_args = 1) {
+    $this->actions = $this->add($this->actions, $hook, $component, $callback, $priority, $accepted_args);
+  }
 
   /**
-	 * A utility function that is used to register the actions and hooks into a single collection.
+   * A utility function that is used to register the actions and hooks into a single collection.
    */
   private function add($hooks, $hook, $component, $callback, $priority, $accepted_args) {
-		$hooks[$this->hook_index($hook, $component, $callback)] = array(
-			'hook'          => $hook,
-			'component'     => $component,
-			'callback'      => $callback,
-			'priority'      => $priority,
-			'accepted_args' => $accepted_args
-		);
+    $hooks[$this->hook_index($hook, $component, $callback)] = array(
+      'hook'          => $hook,
+      'component'     => $component,
+      'callback'      => $callback,
+      'priority'      => $priority,
+      'accepted_args' => $accepted_args
+    );
 
-		return $hooks;
-	}
-
-  /**
-	 * Get an instance of this class
-	 */
-	public static function get_instance() {
-		if (is_null(self::$instance)) {
-			self::$instance = new Chicago_Art_Importer_Loader();
-		}
-
-		return self::$instance;
-	}
+    return $hooks;
+  }
 
   /**
-	 * Utility function for indexing $this->hooks
-	 */
+   * Get an instance of this class
+   */
+  public static function get_instance() {
+    if (is_null(self::$instance)) {
+      self::$instance = new Chicago_Art_Importer_Loader();
+    }
+
+    return self::$instance;
+  }
+
+  /**
+   * Utility function for indexing $this->hooks
+   */
   protected function hook_index($hook, $component, $callback) {
-		return md5($hook . get_class($component) . $callback);
-	}
+    return md5($hook . get_class($component) . $callback);
+  }
 
   /**
-	 * Register the actions with WordPress.
-	 */
+   * Register the actions with WordPress.
+   */
   public function run() {
-		foreach ($this->actions as $hook) {
-			add_action($hook['hook'], array($hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args']);
-		}
-	}
+    foreach ($this->actions as $hook) {
+      add_action($hook['hook'], array($hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args']);
+    }
+  }
 }

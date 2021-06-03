@@ -19,23 +19,23 @@
     require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-chicago-art-api-handler.php';
 
     $this->importer = new ChicagoArtApiHandler();
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+    $this->plugin_name = $plugin_name;
+    $this->version = $version;
 
-		$this->set_options();
-	}
-
-  /**
-	 * Sets the class variable $options
-	 */
-	private function set_options() {
-		$this->options = get_option($this->plugin_name.'-options');
-	}
-
+    $this->set_options();
+  }
 
   /**
-	 * Creates a new custom post type
-	 */
+   * Sets the class variable $options
+   */
+  private function set_options() {
+    $this->options = get_option($this->plugin_name.'-options');
+  }
+
+
+  /**
+   * Creates a new custom post type
+   */
   public static function new_cpt_artwork() {
     $cap_type = 'post';
     $single = 'Artwork';
@@ -82,12 +82,12 @@
 
     $opts = apply_filters('chicago-art-importer-cpt-options', $opts);
 
-		register_post_type(strtolower($cpt_name), $opts);
+    register_post_type(strtolower($cpt_name), $opts);
   }
 
   /**
-	 * Adds ACF plugin fields for artwork custom post type
-	 */
+   * Adds ACF plugin fields for artwork custom post type
+   */
   public static function add_artworks_custom_fields() {
     if (!function_exists('acf_add_local_field_group')) return;
 
@@ -164,11 +164,11 @@
   }
 
   /**
-	 * Creates a new taxonomy for a custom post type
-	 */
-	public static function new_taxonomy_artwork_type() {
+   * Creates a new taxonomy for a custom post type
+   */
+  public static function new_taxonomy_artwork_type() {
     $plural = 'Types';
-		$single = 'Type';
+    $single = 'Type';
     $taxonomy_name = 'artwork_type';
 
     $labels = array(
@@ -187,8 +187,8 @@
       'search_items' => esc_html__("Search {$plural}", 'chicago-art-importer'),
       'separate_items_with_commas' => esc_html__("Separate {$plural} with commas", 'chicago-art-importer'),
       'singular_name' => esc_html__($single, 'chicago-art-importer'),
-		  'update_item' => esc_html__("Update {$single}", 'chicago-art-importer'),
-		  'view_item' => esc_html__("View {$single}", 'chicago-art-importer'),
+      'update_item' => esc_html__("Update {$single}", 'chicago-art-importer'),
+      'view_item' => esc_html__("View {$single}", 'chicago-art-importer'),
     );
 
     $opts = array(
@@ -205,7 +205,7 @@
 
     $opts = apply_filters('chicago-art-importer-taxonomy-options', $opts);
 
-		register_taxonomy($taxonomy_name, 'artwork', $opts);
+    register_taxonomy($taxonomy_name, 'artwork', $opts);
   }
 
   /**
@@ -219,21 +219,21 @@
   }
 
   /**
-	 * Displays admin notices
-	 */
+   * Displays admin notices
+   */
   public function display_admin_notices() {
-		$notices = get_option('chicago_art_importer_admin_notices', array());
+    $notices = get_option('chicago_art_importer_admin_notices', array());
 
-		if (empty($notices)) return;
+    if (empty($notices)) return;
 
-		foreach ($notices as $notice) {
-			echo '<div class="' . esc_attr($notice['class']) . '"><p>' . $notice['notice'] . '</p></div>';
-		}
+    foreach ($notices as $notice) {
+      echo '<div class="' . esc_attr($notice['class']) . '"><p>' . $notice['notice'] . '</p></div>';
+    }
   }
 
    /**
-	 * Clear admin notices
-	 */
+   * Clear admin notices
+   */
   public function remove_admin_notices(){
     delete_option('chicago_art_importer_admin_notices');
   }
@@ -256,29 +256,29 @@
   }
 
   /**
-	 * Adds a settings page link to a menu
-	 */
+   * Adds a settings page link to a menu
+   */
   public function add_menu_page() {
     add_submenu_page(
-			'edit.php?post_type=artwork',
-			apply_filters($this->plugin_name . '-settings-page-title', esc_html__('Import Artwork', 'chicago-art-importer')),
+      'edit.php?post_type=artwork',
+      apply_filters($this->plugin_name . '-settings-page-title', esc_html__('Import Artwork', 'chicago-art-importer')),
       apply_filters($this->plugin_name . '-settings-menu-title', esc_html__('Import Artwork', 'chicago-art-importer')),
-			'manage_options',
-			$this->plugin_name . '-settings',
-			array($this, 'page_options')
-		);
+      'manage_options',
+      $this->plugin_name . '-settings',
+      array($this, 'page_options')
+    );
   }
 
   /**
-	 * Creates the options page
-	 */
-	public function page_options() {
-		include(plugin_dir_path(__FILE__) . 'chicago-art-importer-page.php');
-	}
+   * Creates the options page
+   */
+  public function page_options() {
+    include(plugin_dir_path(__FILE__) . 'chicago-art-importer-page.php');
+  }
 
   /**
-	 * Setup artwork types
-	 */
+   * Setup artwork types
+   */
   public function setup_artwork_types() {
     $taxonomy_name = 'artwork_type';
     

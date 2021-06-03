@@ -11,10 +11,10 @@
  * @author 		  Gaby Costales <gabycostales@gmail.com>
  */
 class Chicago_Art_Importer_Deactivator {
-	public static function deactivate() {
+  public static function deactivate() {
     require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-chicago-art-importer-admin.php';
 
-		Chicago_Art_Importer_Admin::remove_admin_notices();
+    Chicago_Art_Importer_Admin::remove_admin_notices();
     Chicago_Art_Importer_Admin::delete_all_artwork_types();
-	}
+  }
 }
